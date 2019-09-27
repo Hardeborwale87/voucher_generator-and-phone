@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>recharging</title>
+	<meta charset="utf-8" >
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="voucher2.1.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="voucher2.1.js"></script>
+<script type="text/javascript" src="phoneOperation.js"></script>
+
+</head>
+<body onload="bringClock()">
+
+<script type="text/javascript">
+	function bSpace()
+	{
+		textArea.value = textArea.value.substring(0, textArea.value.length-1);
+	}
+	// function dLete()
+	// {
+	// 	textArea.value = "";
+	// }
+	function btnOne(c)
+	{
+		textArea.value += c;
+	}	
+
+	$(document).ready(function(){
+    $('[data-toggle="popover"]').popover(); 
+
+    $("#clicky").click(function(){
+    	// voucherGen.style.display = "inline-block";
+    	$("#voucherGen").toggle();
+    })  
+});
+
+	
+</script>
+
+
+<div class="col-md-12">
+	<div class="row">
+		<div class="col-md-3 mt-5 ml-1">
+			<div class="form-group" id="voucherGen" style="display:none;">
+
+				<input type="number" class="form-control form-control-sm" name="" id="vouch">
+
+				<label for="netWork">Select Service Provider:</label>
+				<select class="form-control" id="netWork">
+					<option value="Mtn">Mtn</option>
+					<option value="Glo">Glo</option>
+					<option value="Airtel">Airtel</option>
+				</select>
+				
+				<label for="amount">Select Amount:</label>
+				<select class="form-control" id="amount">
+					<option value="N100">N100</option>
+					<option value="N200">N200</option>
+					<option value="N500">N500</option>
+					<option value="N1000">N1000</option>
+				</select>
+				<div class="input-group mt-2 ml-3">
+					<button class="btn btn-success" id="weh" onclick="generator()">Generate</button>
+				</div>
+
+						<div id="review" class="ml-3"></div>
+			</div>
+						<!-- <div> -->
+							<span>Need airtime? <button id="clicky"> Click Me </button> to generate Voucher</span>
+						<!-- </div> -->
+
+			
+		</div>
+
+		<div class="col-md-8">
+			<div class="phone mt-3">
+
+						<span class="ml-3">
+							<span class="fa fa-signal"  style="font-size:7px"></span><span style="font-size:7px"> MTN NG </span><span class="fa fa-signal"  style="font-size:7px"></span><span style="font-size:7px"> GLO NG</span>
+						</span>
+						<span>
+							<span id="clock" style="margin-left:40px;font-size:13px"></span>
+						</span>
+						<span style="float:right;margin-right:20px;">
+							<span style="font-size:9px">50% </span><span class="fa fa-battery-half" style="font-size:9px"></span>
+						</span>
+
+
+				<div id="calls" style="display: none;">
+						<textarea id="textArea" class="form-control" disabled style="display:block;"></textarea>
+					
+					<div >
+						<button id="bcksp" onclick="bSpace()" style="display:block;"><span class="fa fa-arrow-left"></span></button>
+					</div>
+					<div class="card" id="showMsg" style="display:none;border:none;content:normal;">
+						<div class="card-body" id="msgPrompt" style="border:1px grey"></div>
+
+						<div align="center" style="margin-top:75px;">
+							<button id="dismissBtn" class="dismissBtn" onclick="dismiss()" style="display:">Dismiss</button>
+						</div>
+
+					</div>
+
+					<div id="ntSelector" class="mx-auto mt-n3">
+						<div class="btn-group-vertical">
+							<h5 style="font-size:10px;font-weight:bold;color:#000000;" class="ml-2 mt-2">Choose SIM for this call</h5>
+							<button id="ntYellow" onclick="ntYellow()">MTN NG</button>
+							<button id="ntGreen" onclick="ntGreen()">GLO NG</button>
+							<!-- <button id="ntRed">AIRTEL NG</button> -->
+						</div>
+					</div>
+					
+					<div id="buton" style="display:block;">
+						<div class="mt-2 ml-3">
+							<button id="left" onclick="btnOne('1')"><div class="digitBtn">1</div><div class="alphBtn">.,</div></button>
+							<button id="middle" onclick="btnOne('2')"><div class="digitBtn">2</div><div class="alphBtn">ABC</div></button>
+							<button id="right" onclick="btnOne('3')"><div class="digitBtn">3</div><div class="alphBtn">DEF</div></button>
+						</div>
+						<div class="mt-2 ml-3">
+							<button id="left" onclick="btnOne('4')"><div class="digitBtn">4</div><div class="alphBtn">GHI</div></button>
+							<button id="middle" onclick="btnOne('5')"><div class="digitBtn">5</div><div class="alphBtn">JKL</div></button>
+							<button id="right" onclick="btnOne('6')"><div class="digitBtn">6</div><div class="alphBtn">MNO</div></button>
+						</div>
+						<div class="mt-2 ml-3">
+							<button id="left" onclick="btnOne('7')"><div class="digitBtn">7</div><div class="alphBtn">PQRS</div></button>
+							<button id="middle" onclick="btnOne('8')"><div class="digitBtn">8</div><div class="alphBtn">TUV</div></button>
+							<button id="right" onclick="btnOne('9')"><div class="digitBtn">9</div><div class="alphBtn">WXYZ</div></button>
+						</div>
+						<div class="mt-2 ml-3">
+							<button id="left" onclick="btnOne('*')"><div style="font-size:18px">*</div></button>
+							<button id="middle" onclick="btnOne('0')"><div class="digitBtn">0</div><div style="font-size:10px">+</div></button>
+							<button id="right" onclick="btnOne('#')"><div style="font-size:18px">#</div></button>
+						</div>
+
+						<div class="row justify-content-center">
+							<button class="btn btn-success" id="dialBtn" onclick="dialBtn()"><span class="fa fa-phone"></span></button>
+						</div>
+					</div>
+
+				</div>
+
+
+					
+
+
+
+				<div class="callBtn">			
+					<button class="callbtn btn-primary" style=""><span class="fa fa-phone"></span></button>
+				</div>
+			</div>
+			<button id="homeBtn"></button>
+		</div>
+	</div>
+</div>
+		<!-- <div class="container col-md-4 ">
+		<div id="container">
+		
+		<div class="mt-2 ml-2">
+			
+			<button type="button" class="btn btn-warning ml-3 mt-3" onclick="bSpace()">C</button>
+			<button type="button" class="btn btn-success ml-3" onclick="sim1()">sim 1</button>
+			<button type="button" class="btn btn-danger ml-3 mt-3" onclick="dLete()">D</button>
+			<div class="" style="margin-left:54px">
+				<button type="button" class="btn btn-success ml-3 mt-1" onclick="sim2()">sim 2</button>
+			</div>
+		</div>
+		
+		
+	</div>
+</div> -->
+
+	</div>
+</div>
+</body>
+</html>
